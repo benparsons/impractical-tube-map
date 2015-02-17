@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>Force Layout Example 2</title>
+    <style>
+
+        .node {
+            fill: #ccc;
+            stroke: #fff;
+            stroke-width: 1px;
+        }
+
+        .link {
+            stroke: #777;
+            stroke-width: 2px;
+        }
+
+        .link.shortcut {
+            stroke: #ddd;
+            stroke-width: 2px;
+        }
+
+        .piccadilly{
+            stroke: #000099;
+        }
+
+        .central{
+            stroke: #E32017;
+        }
+
+        .northern{
+            stroke: #000000;
+        }
+
+        .bakerloo{ stroke: #996633; }
+
+        .jubilee { stroke: #868F98; }
+        .victoria { stroke: #0099CC; }
+    </style>
+</head>
+<body>
+<script src='http://d3js.org/d3.v3.min.js'></script>
+<script>
+
+    // Define the dimensions of the visualization. We're using
+    // a size that's convenient for displaying the graphic on
+    // http://jsDataV.is
+
+    var width = 1280,
+            height = 1920;
+
+    var col1 = width / 4;
+    var col2 = width / 2;
+    var col3 = (width / 4) * 3;
+
+    // Here's were the code begins. We start off by creating an SVG
+    // container to hold the visualization. We only need to specify
+    // the dimensions for this container.
+
+    var svg = d3.select('body').append('svg')
+            .attr('width', width)
+            .attr('height', height);
+
+    // Before we do anything else, let's define the data for the visualization.
+
+    /*
+
+
+     Bow Church
+
+     Bow Road
+
+     Brent Cross
+
+     Brixton
+
+     Bromley-by-Bow
+
+     Brondesbury
+
+     Brondesbury Park
+
+     Buckhurst Hill
+
+     Burnt Oak
+
+     Caledonian Road
+
+     Caledonian Road & Barnsbury
+
+     Camden Road
+
+     Camden Town
+
+     Canada Water
+
+     Canary Wharf
+
+     Canning Town
+
+     Cannon Street
+
+     Canonbury
+
+     Canons Park
+
+     Chalfont & Latimer
+
+
+
+
+     Chesham
+
+     Chigwell
+
+     Chiswick Park
+
+     Chorleywood
+
+     Clapham Common
+
+     Clapham North
+
+     Clapham South
+
+     Cockfosters?
+
+     Colindale
+
+     Colliers Wood
+     Crossharbour And London Arena
+
+     Croxley
+
+     Custom House for ExCel
+
+     Cutty Sark
+
+     Cyprus
+
+     Dagenham East
+
+     Dagenham Heathway
+
+     Dalston Kingsland
+
+     Debden
+
+     Debtford Bridge
+
+     Devons Road
+
+     Dollis Hill
+
+     Ealing Broadway
+
+     Ealing Common
+
+     Earls Court
+
+     East Acton
+
+     East Finchley
+
+     East Ham
+
+     East India
+
+     East Putney
+
+     Eastcote
+
+     Edgware
+
+     Edgware Road
+
+     Elephant And Castle
+
+     Elm Park
+
+     Elverson Road
+
+
+
+
+
+
+     Fairlop
+
+     Farringdon
+
+     Finchley
+
+     Finchley Road
+
+     Finchley Road And Frognal
+     Hackney Central
+
+     Hackney Wick
+
+     Hainault
+
+     Hammersmith
+
+     Hampstead Heath
+
+     Hampstead
+
+     Hanger Lane
+
+     Harlesden
+
+     Harrow And Wealdstone
+
+     Harrow on-the-Hill
+
+     Hatton Cross
+
+     Heathrow Terminal 4
+
+     Heathrow Terminals 1,2,3
+
+     Hendon Central
+
+     Heron Quays
+
+     High Barnet
+
+     High Street Kensington
+
+     Highbury & Islington
+
+     Highgate
+
+     Hillingdon
+    Holland Park
+
+     Holloway Road
+
+     Homerton
+
+     Hornchurch
+
+     Hounslow Central
+
+     Hounslow East
+
+     Hounslow West
+
+     Hyde Park Corner
+
+     Ickenham
+
+     Island Gardens
+
+     Kennington
+
+     Kensal Green
+
+     Kensal Rise
+
+     Kensington (Olympia)
+
+     Kentish Town
+
+     Kentish Town West
+
+     Kenton
+
+     Kew Gardens
+
+     Kilburn
+
+     Kilburn Park
+Kingsbury
+
+     Knightsbridge
+
+     Ladbroke Grove
+
+     Lambeth North?
+
+     Lancaster Gate
+
+     Latimer Road
+Lewisham
+
+     Leyton
+
+     Leytonstone
+
+     Limehouse
+
+     Liverpool Street
+
+     London Bridge
+
+     Loughton
+
+     Manor House
+
+     Mansion House
+
+     Marble Arch
+
+     Marylebone
+
+     Maida Vale?
+
+     Mile End
+
+     Mill Hill East
+
+     Monument
+
+     Moor Park
+
+     Moorgate
+
+     Morden
+
+     Mornington Crescent
+
+     Mudchute
+
+     Neasden
+
+     New Cross Gate
+
+     New Cross
+
+     Newbury Park
+
+     North Acton
+
+     North Ealing
+
+     North Greenwich
+
+     North Harrow
+
+     North Wembley
+
+     North Woolwich
+
+     Northfields
+
+     Northolt
+
+     Northwick Park
+
+     Northwood
+
+     Northwood Hills
+
+     Notting Hill Gate
+
+     Oakwood
+
+
+
+     Osterley
+
+     Oval
+Paddington
+
+     Park Royal
+
+     Parsons Green
+
+     Perivale
+Pimlico
+
+     Pinner
+
+     Plaistow
+
+     Poplar
+
+     Preston Road
+     Rotherhithe
+
+     Royal Albert
+
+     Royal Oak
+
+     Royal Victoria
+
+     Ruislip
+
+     Ruislip Gardens
+
+     Stanmore
+
+     Stepney Green
+
+     Stockwell
+
+     Stonebridge Park
+
+     Stratford
+
+     Sudbury Hill
+
+     Sudbury Town
+
+     Surrey Quays
+
+     Swiss Cottage
+
+     Temple
+
+     Theydon Bois
+
+     Tooting Bec
+
+     Tooting Broadway
+     Tottenham Hale
+
+     Totteridge And Whetstone
+
+     Tower Gateway
+
+     Tower Hill
+
+     Tufnell Park
+
+     Turnham Green
+
+     Turnpike Lane
+
+     Upminster
+
+     Upminster Bridge
+
+     Upney
+
+     Upton Park
+
+     Uxbridge
+     Wembley Central
+
+     Wembley Park
+
+     West Acton
+
+     West Brompton
+
+     West Finchley
+
+     West Ham
+
+     West Hampstead
+
+     West Harrow
+
+     West India Quay
+
+     West Kensington?
+
+     West Ruislip
+
+     Westbourne Park
+
+     Westferry
+
+     Westminster
+
+     White City
+
+     Whitechapel
+
+     Willesden Green
+
+     Willesden Junction
+
+     Wimbledon?
+
+     Wimbledon Park
+
+     Wood Green
+
+     Woodford
+
+     Woodside Park
+
+
+     */
+    var graph = {
+        "nodes": [{name: "London Underground", fixed: true, x: col2, y: 50},
+            {station: 1, name: "Holborn"},
+            {station: 2, name: "Russell Square"},
+            {station: 3, name: "Covent Garden"},
+            {station: 4, name: "Chancery Lane"},
+            {station: 5, name: "Tottenham Court Road"},
+            {station: 6, name: "Leicester Square"},
+            {station: 7, name: "Piccadilly Circus"},
+            {station: 8, name: "Oxford Circus"},
+            {station: 9, name: "Acton Central"},
+            {station: 10, name:"Acton Town"},
+            {station: 11, name:"Aldgate"},
+            {station: 12, name:"Aldgate East"},
+            {station: 13, name:"All Saints"},
+            {station: 14, name:"Alperton"},
+            {station: 15, name:"Amersham"},
+            {station: 16, name:"Angel"},
+            {station: 17, name:"Archway"},
+            {station: 18, name:"Arnos Grove"},
+            {station: 19, name:"Arsenal"},
+            {station: 20, name:"Baker Street"},
+            {station: 21, name:"Balham"},
+            {station: 22, name:"Bank"},
+            {station: 23, name:"Barbican"},
+            {station: 24, name:"Barking"},
+            {station: 25, name:"Barkingside"},
+            {station: 26, name:"Barons Court"},
+            {station: 27, name:"Bayswater"},
+            {station: 28, name:"Beckton"},
+            {station: 29, name:"Beckton Park"},
+            {station: 30, name:"Becontree"},
+            {station: 31, name:"Belsize Park"},
+            {station: 32, name:"Bermondsey"},
+            {station: 33, name:"Bethnal Green"},
+            {station: 34, name:"Blackfriars"},
+            {station: 35, name:"Blackhorse Road"},
+            {station: 36, name:"Blackwall"},
+            {station: 37, name:"Bond Street"},
+            {station: 38, name:"Borough"},
+            {station: 39, name:"Boston Manor"},
+            {station: 40, name:"Bounds Green"},
+            {station: 41, name:"Prince Regent"},
+            {station: 42, name:"Pudding Mill Lane"},
+            {station: 43, name:"Putney Bridge"},
+            {station: 44, name:"Queens Park"},
+            {station: 45, name:"Queensbury"},
+            {station: 46, name:"Queensway"},
+            {station: 47, name:"Ravenscourt Park"},
+            {station: 48, name:"Rayners Lane"},
+            {station: 49, name:"Redbridge"},
+            {station: 50, name:"Regent's Park"},
+            {station: 51, name:"Richmond"},
+            {station: 52, name:"Rickmansworth"},
+            {station: 53, name:"Roding Valley"},
+            {station: 54, name:"Finsbury Park"},
+            {station: 55, name:"Fulham Broadway"},
+            {station: 56, name:"Gallions Reach"},
+            {station: 57, name:"Gants Hill"},
+            {station: 58, name:"Gloucester Road"},
+            {station: 59, name:"Golders Green"},
+            {station: 60, name:"Goldhawk Road"},
+            {station: 61, name:"Goodge Street"},
+            {station: 62, name:"Gospel Oak"},
+            {station: 63, name:"Grange Hill"},
+            {station: 64, name:"Great Portland Street"},
+            {station: 65, name:"Green Park"},
+            {station: 66, name:"Greenford"},
+            {station: 67, name:"Greenwich"},
+            {station: 68, name:"Gunnersbury"},
+            {station: 69, name:"King's Cross St Pancras"},
+            {station: 70, name:"Vauxhall"},
+            {station: 71, name:"Victoria"},
+            {station: 72, name:"Walthamstow Central"},
+            {station: 73, name:"Wanstead"},
+            {station: 74, name:"Wapping"},
+            {station: 75, name:"Warren Street"},
+            {station: 76, name:"Warwick Avenue"},
+            {station: 77, name:"Waterloo"},
+            {station: 78, name:"Watford"},
+            {station: 79, name:"Ruislip Manor"},
+            {station: 80, name:"Seven Sisters"},
+            {station: 81, name:"Shadwell"},
+            {station: 82, name:"Shepherd's Bush"},
+            {station: 83, name:"Shoreditch"},
+            {station: 84, name:"Silvertown"},
+            {station: 85, name:"Sloane Square"},
+            {station: 86, name:"Snaresbrook"},
+            {station: 87, name:"South Acton"},
+            {station: 88, name:"South Ealing"},
+            {station: 89, name:"South Harrow"},
+            {station: 90, name:"South Kensington"},
+            {station: 91, name:"South Kenton"},
+            {station: 92, name:"South Quay"},
+            {station: 93, name:"South Ruislip"},
+            {station: 94, name:"South Wimbledon"},
+            {station: 95, name:"South Woodford"},
+            {station: 96, name:"Southfields"},
+            {station: 97, name:"Southgate"},
+            {station: 98, name:"Southwark"},
+            {station: 99, name:"St. James's Park"},
+            {station: 100, name:"St John's Wood"},
+            {station: 101, name:"St Paul's"},
+            {station: 102, name:"Stamford Brook"},
+            {station: 103, name:"Old Street"},
+            {station: 104, name:"Embankment"},
+            {station: 105, name:"Epping"},
+            {station: 106, name:"Euston"},
+            {station: 107, name:"Euston Square"},
+            {station: 108, name:"Chalk Farm"},
+            {station: 109, name:"Charing Cross"},
+            {station: 110, name:""},
+            {station: 111, name:""},
+            {station: 112, name:""},
+            {station: 113, name:""},
+            {station: 114, name:""},
+            {station: 115, name:""},
+            {station: 116, name:""},
+            {station: 117, name:""},
+            {station: 118, name:""},
+            {station: 119, name:""},
+            {station: 120, name:""},
+            {station: 121, name:""},
+            {station: 122, name:""},
+            {station: 123, name:""},
+            {station: 124, name:""},
+            {station: 125, name:""},
+            {station: 126, name:""},
+            {station: 127, name:""},
+            {station: 128, name:""},
+            {station: 129, name:""},
+            {station: 110, name:""},
+            {station: 131, name:""},
+            {station: 132, name:""},
+            {station: 133, name:""},
+            {station: 134, name:""},
+            {station: 135, name:""},
+            {station: 136, name:""},
+            {station: 137, name:""},
+            {station: 138, name:""},
+            {station: 139, name:""},
+            {station: 140, name:""},
+            {station: 141, name:""},
+            {station: 142, name:""},
+            {station: 143, name:""},
+            {station: 144, name:""},
+            {station: 145, name:""},
+            {station: 146, name:""},
+            {station: 147, name:""},
+            {station: 148, name:""},
+            {station: 149, name:""},
+        ],
+        "links": [
+            {"source": 1, "target": 2, line: "piccadilly"},
+            {"source": 1, "target": 3, line: "piccadilly"},
+            {"source": 1, "target": 4, line: "central"},
+            {"source": 1, "target": 5, line: "central"},
+            {"source": 3, "target": 6, line: "piccadilly"},
+            {"source": 5, "target": 6, line: "northern"},
+            {"source": 6, "target": 7, line: "piccadilly"},
+            {"source": 5, "target": 8, line: "central"},
+            {"source": 8, "target": 37, line: "central"},
+            {"source": 20, "target": 37, line: "jubilee"},
+            {"source": 8, "target": 50, line: "bakerloo"},
+            {"source": 20, "target": 50, line: "bakerloo"},
+            {"source": 65, "target": 7, line: "piccadilly"},
+            {"source": 65, "target": 37, line: "jubilee"},
+            {"source": 7, "target": 8, line: "bakerloo"},
+            {"source": 65, "target": 8, line: "victoria"},
+            {"source": 61, "target": 75, line: "northern"},
+            {"source": 61, "target": 5, line: "northern"},
+            {"source": 75, "target": 8, line: "victoria", shortcut:true},
+            {"source": 4, "target": 101, line: "central"},
+            {"source": 101, "target": 22, line: "central"},
+            {"source": 22, "target": 103, line: "northern"},
+            {"source": 103, "target": 16, line: "northern"},
+            {"source": 16, "target": 69, line: "northern"},
+            {"source": 69, "target": 106, line: "northern"},
+            {"source": 75, "target": 106, line: "northern"},
+            {"source": 2, "target": 69, line: "piccadilly"},
+            {"source": 109, "target": 7, line: "bakerloo"},
+            {"source": 109, "target": 6, line: "northern"},
+            {"source": 109, "target": 77, line: "bakerloo"},
+            {"source": 109, "target": 77, line: "northern"},
+
+        ]
+    };
+
+
+    // Extract the nodes and links from the data.
+    var nodes = graph.nodes,
+            links = graph.links;
+
+    // Now we create a force layout object and define its properties.
+    // Those include the dimensions of the visualization and the arrays
+    // of nodes and links.
+
+    var force = d3.layout.force()
+            .size([width, height])
+            .nodes(nodes)
+            .links(links);
+
+    // There's one more property of the layout we need to define,
+    // its `linkDistance`. That's generally a configurable value and,
+    // for a simple example, we'd normally leave it at its default.
+    // Unfortunately, the default value results in a visualization
+    // that's not especially clear. This parameter defines the
+    // distance (normally in pixels) that we'd like to have between
+    // nodes that are connected. (It is, thus, the length we'd
+    // like our links to have.)
+
+    force.linkDistance(width / 10);
+    force.charge(-600);
+    force.theta(0.6);
+    force.linkStrength(function (link) {
+        if (link.shortcut)  return 0;
+        return 1;
+    });
+
+    // Next we'll add the nodes and links to the visualization.
+    // Note that we're just sticking them into the SVG container
+    // at this point. We start with the links. The order here is
+    // important because we want the nodes to appear "on top of"
+    // the links. SVG doesn't really have a convenient equivalent
+    // to HTML's `z-index`; instead it relies on the order of the
+    // elements in the markup. By adding the nodes _after_ the
+    // links we ensure that nodes appear on top of links.
+
+    // Links are pretty simple. They're just SVG lines, and
+    // we're not even going to specify their coordinates. (We'll
+    // let the force layout take care of that.) Without any
+    // coordinates, the lines won't even be visible, but the
+    // markup will be sitting inside the SVG container ready
+    // and waiting for the force layout.
+
+    var link = svg.selectAll('.link')
+            .data(links)
+            .enter().append('line')
+            .attr('class', 'link');
+
+    // Now it's the nodes turn. Each node is drawn as a circle.
+
+    // Create the groups under svg
+    var gnodes = svg.selectAll('g.gnode')
+            .data(graph.nodes)
+            .enter()
+            .append('g')
+            .classed('gnode', true).call(force.drag);
+
+    // Add one circle in each group
+    var node = gnodes.append("circle")
+            .attr("class", "node")
+            .attr("r", 5);
+
+    // Append the labels to each group
+    var labels = gnodes.append("text")
+            .text(function (d) {
+                if (d.name) return d.station + " " + d.name;
+                var label = "";
+                if (label.length === 0) label += d.station;
+                return label;
+            });
+
+
+    // We're about to tell the force layout to start its
+    // calculations. We do, however, want to know when those
+    // calculations are complete, so before we kick things off
+    // we'll define a function that we want the layout to call
+    // once the calculations are done.
+
+    force.on('tick', function () {
+
+        // When this function executes, the force layout
+        // calculations have concluded. The layout will
+        // have set various properties in our nodes and
+        // links objects that we can use to position them
+        // within the SVG container.
+
+        // First let's reposition the nodes. As the force
+        // layout runs it updates the `x` and `y` properties
+        // that define where the node should be centered.
+        // To move the node, we set the appropriate SVG
+        // attributes to their new values. Also give the
+        // nodes a non-zero radius so they're visible.
+
+        link.attr("x1", function (d) {
+            return d.source.x;
+        })
+                .attr("y1", function (d) {
+                    return d.source.y;
+                })
+                .attr("x2", function (d) {
+
+                    return d.target.x;
+                })
+                .attr("y2", function (d) {
+                    return d.target.y;
+                })
+                .attr("class", function (d) {
+                    return "link " + d.line;
+                });
+
+        // Translate the groups
+        gnodes.attr("transform", function (d) {
+            return 'translate(' + [d.x, d.y] + ')';
+        });
+
+
+    });
+
+    // Okay, everything is set up now so it's time to turn
+    // things over to the force layout. Here we go.
+
+    force.start();
+
+    // By the time you've read this far in the code, the force
+    // layout has probably finished its work.
+
+</script>
+</body>
+</html>
