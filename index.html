@@ -556,7 +556,7 @@
             {station: 106, name: "Euston"},
             {station: 107, name: "Euston Square"},
             {station: 108, name: "Chalk Farm"},
-            {station: 109, name: "Charing Cross"},
+            {station: 109, name: "Charing Cross", fixed: true, x: (width/2) + 75, y: (height/2) + (75*2)},
             {station: 110, name: "West Kensington"},
             {station: 111, name: "West Ruislip"},
             {station: 112, name: "Westbourne Park"},
@@ -827,7 +827,13 @@
 
     });
 
-    // Okay, everything is set up now so it's time to turn
+    force.on('end', function () {
+        graph.nodes.forEach(function(node) {
+            node.fixed = false;
+        })
+    });
+
+        // Okay, everything is set up now so it's time to turn
     // things over to the force layout. Here we go.
 
     force.start();
