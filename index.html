@@ -55,6 +55,18 @@
         .circle {
             stroke: #FFD300;
         }
+        .hammersmith-and-city {
+            stroke: #F3A9BB
+        }
+        .metropolitan {
+            stroke: #9B0056;
+        }
+        .dlr {
+            stroke: #00A4A7;
+        }
+        .overground {
+            stroke: #EE7C0E
+        }
     </style>
 </head>
 <body>
@@ -166,11 +178,9 @@
 
      Eastcote
 
-     Edgware
 
-     Edgware Road
 
-     Elephant And Castle
+
 
      Elm Park
 
@@ -244,17 +254,12 @@
 
      Island Gardens
 
-     Kennington
 
-     Kensal Green
 
-     Kensal Rise
 
-     Kensington (Olympia)
 
-     Kentish Town
 
-     Kentish Town West
+
 
      Kenton
 
@@ -354,17 +359,12 @@
 
      Royal Victoria
 
-     Ruislip
 
-     Ruislip Gardens
 
-     Stanmore
 
-     Stepney Green
 
-     Stockwell
 
-     Stonebridge Park
+
 
      Stratford
 
@@ -452,10 +452,10 @@
             {station: 2, name: "Russell Square"},
             {station: 3, name: "Covent Garden"},
             {station: 4, name: "Chancery Lane"},
-            {station: 5, name: "Tottenham Court Road"},
-            {station: 6, name: "Leicester Square"},
-            {station: 7, name: "Piccadilly Circus"},
-            {station: 8, name: "Oxford Circus"},
+            {station: 5, name: "Tottenham Court Road", fixed: true, x: (width/2) + 75, y: (height/2) - 75},
+            {station: 6, name: "Leicester Square", fixed: true, x: (width/2) + 75, y: (height/2) + 75},
+            {station: 7, name: "Piccadilly Circus", fixed: true, x: (width/2) - 75, y: (height/2) + 75},
+            {station: 8, name: "Oxford Circus", fixed: true, x: (width/2) - 75, y: (height/2) - 75},
             {station: 9, name: "Acton Central"},
             {station: 10, name: "Acton Town"},
             {station: 11, name: "Aldgate"},
@@ -469,7 +469,7 @@
             {station: 19, name: "Arsenal"},
             {station: 20, name: "Baker Street"},
             {station: 21, name: "Balham"},
-            {station: 22, name: "Bank"},
+            {station: 22, name: "Bank", fixed: true, x: (width/2) + (75*5), y: (height/2) - 75},
             {station: 23, name: "Barbican"},
             {station: 24, name: "Barking"},
             {station: 25, name: "Barkingside"},
@@ -591,21 +591,21 @@
             {station: 141, name: "Monument"},
             {station: 142, name: "Moor Park"},
             {station: 143, name: "Moorgate"},
-            {station: 144, name: ""},
-            {station: 145, name: ""},
-            {station: 146, name: ""},
-            {station: 147, name: ""},
-            {station: 148, name: ""},
-            {station: 149, name: ""},
-            {station: 150, name: ""},
-            {station: 151, name: ""},
-            {station: 152, name: ""},
-            {station: 153, name: ""},
-            {station: 154, name: ""},
-            {station: 155, name: ""},
-            {station: 156, name: ""},
-            {station: 157, name: ""},
-            {station: 158, name: ""},
+            {station: 144, name: "Edgware"},
+            {station: 145, name: "Edgware Road"},
+            {station: 146, name: "Elephant And Castle"},
+            {station: 147, name: "Kennington"},
+            {station: 148, name: "Kensal Green"},
+            {station: 149, name: "Kensal Rise"},
+            {station: 150, name: "Kensington (Olympia)"},
+            {station: 151, name: "Kentish Town"},
+            {station: 152, name: "Kentish Town West"},
+            {station: 153, name: "Ruislip"},
+            {station: 154, name: "Ruislip Gardens"},
+            {station: 155, name: "Stanmore"},
+            {station: 156, name: "Stepney Green"},
+            {station: 157, name: "Stockwell"},
+            {station: 158, name: "Stonebridge Park"},
             {station: 159, name: ""},
             {station: 160, name: ""},
             {station: 161, name: ""},
@@ -681,6 +681,25 @@
             {"source": 86, "target": 95, line: "central"},
             {"source": 129, "target": 86, line: "central"},
             {"source": 26, "target": 110, line: "district"},
+            {"source": 22, "target": 131, line: "central"},
+            {"source": 131, "target": 33, line: "central"},
+            {"source": 33, "target": 139, line: "central"},
+            {"source": 98, "target": 132, line: "jubilee"},
+            {"source": 132, "target": 22, line: "northern"},
+            {"source": 38, "target": 132, line: "northern"},
+            {"source": 146, "target": 38, line: "northern"},
+            {"source": 147, "target": 146, line: "northern"},
+            {"source": 77, "target": 147, line: "northern"},
+            {"source": 65, "target": 71, line: "victoria"},
+            {"source": 122, "target": 147, line: "northern"},
+            {"source": 122, "target": 157, line: "northern"},
+            {"source": 127, "target": 70, line: "victoria"},
+            {"source": 70, "target": 157, line: "victoria"},
+            {"source": 71, "target": 99, line: "circle"},
+            {"source": 71, "target": 99, line: "district"},
+            {"source": 99, "target": 114, line: "district"},
+            {"source": 99, "target": 114, line: "circle"},
+            {"source": 39, "target": 121, line: "piccadilly"},
 
         ]
     };
@@ -708,12 +727,12 @@
     // nodes that are connected. (It is, thus, the length we'd
     // like our links to have.)
 
-    force.linkDistance(width / 10);
-    force.charge(-300);
-    force.theta(0.6);
+    force.linkDistance(width / 30);
+    force.charge(-400);
+    force.theta(0.2);
     force.linkStrength(function (link) {
         if (link.shortcut)  return 0;
-        return 1;
+        return 0.8;
     });
 
     // Next we'll add the nodes and links to the visualization.
@@ -752,7 +771,8 @@
             .attr("r", 5);
 
     // Append the labels to each group
-    var labels = gnodes.append("text")
+    var labels = gnodes.append("text").attr("style", "font-family: Arial; font-size: 10; ")
+
             .text(function (d) {
                 if (d.name) return d.station + " " + d.name;
                 var label = "";
