@@ -93,171 +93,7 @@
             .attr('height', height);
 
     // Before we do anything else, let's define the data for the visualization.
-
-    /*
-
-     Chesham
-
-     Chigwell
-
-     Chiswick Park
-
-     Chorleywood
-
-
-     Cockfosters?
-
-     Colindale
-
-     Colliers Wood
-     Crossharbour And London Arena
-
-     Croxley
-
-     Custom House for ExCel
-
-     Cutty Sark
-
-     Cyprus
-
-     Dagenham East
-
-     Dagenham Heathway
-     Debden
-
-     Debtford Bridge
-
-     Devons Road
-
-     Dollis Hill
-
-
-
-     East Ham
-
-     East India
-
-     East Putney
-
-     Eastcote
-
-     Elm Park
-
-     Harrow And Wealdstone
-
-     Harrow on-the-Hill
-
-     Hatton Cross
-
-     Heathrow Terminal 4
-
-     Heathrow Terminals 1,2,3
-
-     Hendon Central
-
-
-     Hornchurch
-
-     Hounslow Central
-
-     Hounslow East
-
-     Hounslow West
-
-
-     Ickenham
-
-     Island Gardens
-
-
-     Kenton
-
-     Kew Gardens
-
-     Mudchute
-
-     Neasden
-
-     New Cross Gate
-
-     New Cross
-
-     Newbury Park
-
-
-     North Greenwich
-
-     North Harrow
-
-     North Wembley
-
-     North Woolwich
-
-     Northfields
-
-     Northolt
-
-     Northwick Park
-
-     Northwood
-
-     Northwood Hills
-
-     Pinner
-
-     Plaistow
-
-     Poplar
-
-     Preston Road
-     Rotherhithe
-
-     Royal Albert
-
-     Royal Oak
-
-     Royal Victoria
-
-
-     Upminster
-
-     Upminster Bridge
-
-     Upney
-
-     Upton Park
-
-     Uxbridge
-     Wembley Central
-
-     Wembley Park
-
-
-     West Brompton
-
-     West Finchley
-
-     West Ham
-
-     West Hampstead
-
-     West Harrow
-
-     West India Quay
-
-
-     Wimbledon?
-
-     Wimbledon Park
-
-     Wood Green
-
-     Woodford
-
-     Woodside Park
-
-
-     */
+    
     var graph = {
         "nodes": [{name: "London Underground", fixed: true, x: col2, y: 50},
             {station: 1, name: "Holborn"},
@@ -502,33 +338,93 @@
             {station: 240, name: "North Acton"},
             {station: 241, name: "North Ealing"},
             {station: 242, name: "West Acton"},
-            {station: 243, name: ""},
-            {station: 244, name: ""},
-            {station: 245, name: ""},
-            {station: 246, name: ""},
-            {station: 247, name: ""},
-            {station: 248, name: ""},
-            {station: 249, name: ""},
-            {station: 250, name: ""},
-            {station: 251, name: ""},
-            {station: 252, name: ""},
-            {station: 253, name: ""},
-            {station: 254, name: ""},
-            {station: 255, name: ""},
-            {station: 256, name: ""},
-            {station: 257, name: ""},
-            {station: 258, name: ""},
-            {station: 259, name: ""},
-            {station: 260, name: ""},
-            {station: 261, name: ""},
-            {station: 262, name: ""},
-            {station: 263, name: ""},
-            {station: 264, name: ""},
-            {station: 265, name: ""},
-            {station: 266, name: ""},
-            {station: 267, name: ""},
-            {station: 268, name: ""},
-            {station: 269, name: ""},
+            {station: 243, name: "Chesham"},
+            {station: 244, name: "Chigwell"},
+            {station: 245, name: "Chiswick Park"},
+            {station: 246, name: "Chorleywood"},
+            {station: 247, name: "Cockfosters"},
+            {station: 248, name: "Colindale"},
+            {station: 249, name: "Colliers Wood"},
+            {station: 250, name: "Crossharbour And London Arena"},
+            {station: 251, name: "Croxley"},
+            {station: 252, name: "Custom House for ExCel"},
+            {station: 253, name: "Cutty Sark"},
+            {station: 254, name: "Cyprus"},
+            {station: 255, name: "Dagenham East"},
+            {station: 256, name: "Dagenham Heathway"},
+            {station: 257, name: "Debden"},
+            {station: 258, name: "Debtford Bridge"},
+            {station: 259, name: "Devons Road"},
+            {station: 260, name: "Dollis Hill"},
+            {station: 261, name: "East Ham"},
+            {station: 262, name: "East India"},
+            {station: 263, name: "East Putney"},
+            {station: 264, name: "Eastcote"},
+            {station: 265, name: "Elm Park"},
+            {station: 266, name: "Harrow And Wealdstone"},
+            {station: 267, name: "Harrow on-the-Hill"},
+            {station: 268, name: "Hatton Cross"},
+            {station: 269, name: "Heathrow Terminal 4"},
+            {station: 270, name: "Heathrow Terminals 1,2,3"},
+            {station: 271, name: "Hendon Central"},
+            {station: 272, name: "Hornchurch"},
+            {station: 273, name: "Hounslow Central"},
+            {station: 274, name: "Hounslow East"},
+            {station: 275, name: "Hounslow West"},
+            {station: 276, name: "Ickenham"},
+            {station: 277, name: "Island Gardens"},
+            {station: 278, name: "Kenton"},
+            {station: 279, name: "Kew Gardens"},
+            {station: 260, name: "Mudchute"},
+            {station: 281, name: "Neasden"},
+            {station: 282, name: "New Cross Gate"},
+            {station: 283, name: "New Cross"},
+            {station: 284, name: "Newbury Park"},
+            {station: 285, name: "North Greenwich"},
+            {station: 286, name: "North Harrow"},
+            {station: 287, name: "North Wembley"},
+            {station: 288, name: "North Woolwich"},
+            {station: 289, name: "Northfields"},
+            {station: 290, name: "Northolt"},
+            {station: 291, name: "Northwick Park"},
+            {station: 292, name: "Northwood"},
+            {station: 293, name: "Northwood Hills"},
+            {station: 294, name: "Pinner"},
+            {station: 295, name: "Plaistow"},
+            {station: 296, name: "Poplar"},
+            {station: 297, name: "Preston Road"},
+            {station: 298, name: "Rotherhithe"},
+            {station: 299, name: "Royal Albert"},
+            {station: 300, name: "Royal Oak"},
+            {station: 301, name: "Royal Victoria"},
+            {station: 302, name: "Upminster"},
+            {station: 303, name: "Upminster Bridge"},
+            {station: 304, name: "Upney"},
+            {station: 305, name: "Upton Park"},
+            {station: 306, name: "Uxbridge"},
+            {station: 307, name: "Wembley Central"},
+            {station: 308, name: "Wembley Park"},
+            {station: 309, name: "West Brompton"},
+            {station: 310, name: "West Finchley"},
+            {station: 311, name: "West Ham"},
+            {station: 312, name: "West Hampstead"},
+            {station: 313, name: "West Harrow"},
+            {station: 314, name: "West India Quay"},
+            {station: 315, name: "Wimbledon"},
+            {station: 316, name: "Wimbledon Park"},
+            {station: 317, name: "Wood Green"},
+            {station: 318, name: "Woodford"},
+            {station: 319, name: "Woodside Park"},
+            {station: 320, name: ""},
+            {station: 321, name: ""},
+            {station: 322, name: ""},
+            {station: 323, name: ""},
+            {station: 324, name: ""},
+            {station: 325, name: ""},
+            {station: 326, name: ""},
+            {station: 327, name: ""},
+            {station: 328, name: ""},
+            {station: 329, name: ""},
         ],
         "links": [
             {"source": 1, "target": 2, line: "piccadilly"},
@@ -694,6 +590,33 @@
             {"source": 65, "target": 239, line: "piccadilly"},
             {"source": 239, "target": 220, line: "piccadilly"},
             {"source": 58, "target": 220, line: "piccadilly"},
+            {"source": 82, "target": 215, line: "central"},
+            {"source": 82, "target": 115, line: "central"},
+            {"source": 236, "target": 115, line: "central"},
+            {"source": 236, "target": 240, line: "central"},
+            {"source": 242, "target": 240, line: "central"},
+            {"source": 242, "target": 233, line: "central"},
+            {"source": 240, "target": 207, line: "central"},
+            {"source": 126, "target": 207, line: "central"},
+            {"source": 76, "target": 138, line: "bakerloo"},
+            {"source": 138, "target": 218, line: "bakerloo"},
+            {"source": 44, "target": 218, line: "bakerloo"},
+            {"source": 44, "target": 148, line: "bakerloo"},
+            {"source": 118, "target": 148, line: "bakerloo"},
+            {"source": 118, "target": 208, line: "bakerloo"},
+            {"source": 158, "target": 208, line: "bakerloo"},
+            {"source": 235, "target": 90, line: "district"},
+            {"source": 235, "target": 211, line: "district"},
+            {"source": 235, "target": 110, line: "district"},
+            {"source": 26, "target": 204, line: "piccadilly"},
+            {"source": 26, "target": 204, line: "district"},
+            {"source": 26, "target": 58, line: "piccadilly", shortcut:true},
+            {"source": 10, "target": 234, line: "piccadilly"},
+            {"source": 10, "target": 234, line: "district"},
+            {"source": 233, "target": 234, line: "district"},
+            {"source": 241, "target": 234, line: "piccadilly"},
+            {"source": 10, "target": 193, line: "piccadilly"},
+            {"source": 204, "target": 193, line: "piccadilly"},
         ]
     };
 
