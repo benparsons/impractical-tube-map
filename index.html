@@ -420,7 +420,7 @@
             {station: 320, name: "Finchley Central", fixed: true, x: (width/2) + (gridSize*2), y: (height/2) - (gridSize*9)},
             {station: 321, name: "Hoxton"},
             {station: 322, name: "Haggerston"},
-            {station: 323, name: ""},
+            {station: 323, name: "Langdon Park"},
             {station: 324, name: ""},
             {station: 325, name: ""},
             {station: 326, name: ""},
@@ -696,6 +696,44 @@
             {"source": 322, "target": 321, line: "overground"},
             {"source": 322, "target": 232, line: "overground"},
             {"source": 231, "target": 232, line: "joined"},
+            {"source": 22, "target": 81, line: "dlr"},
+            {"source": 130, "target": 81, line: "dlr"},
+            {"source": 130, "target": 113, line: "dlr"},
+            {"source": 296, "target": 113, line: "dlr"},
+            {"source": 296, "target": 36, line: "dlr"},
+            {"source": 262, "target": 36, line: "dlr"},
+            {"source": 262, "target": 174, line: "dlr"},
+            {"source": 314, "target": 296, line: "dlr"},
+            {"source": 314, "target": 113, line: "dlr"},
+            {"source": 314, "target": 173, line: "dlr"},
+            {"source": 296, "target": 13, line: "dlr"},
+            {"source": 323, "target": 13, line: "dlr"},
+            {"source": 323, "target": 259, line: "dlr"},
+            {"source": 159, "target": 259, line: "dlr"},
+            {"source": 159, "target": 160, line: "joined"},
+            {"source": 159, "target": 42, line: "dlr"},
+            {"source": 179, "target": 42, line: "dlr"},
+            {"source": 12, "target": 131, line: "hammersmith-and-city"},
+            {"source": 12, "target": 116, line: "hammersmith-and-city"},
+            {"source": 12, "target": 116, line: "district"},
+            {"source": 156, "target": 116, line: "district"},
+            {"source": 156, "target": 116, line: "hammersmith-and-city"},
+            {"source": 156, "target": 139, line: "hammersmith-and-city"},
+            {"source": 156, "target": 139, line: "district"},
+            {"source": 160, "target": 139, line: "district"},
+            {"source": 160, "target": 139, line: "hammersmith-and-city"},
+            {"source": 160, "target": 163, line: "hammersmith-and-city"},
+            {"source": 160, "target": 163, line: "district"},
+            {"source": 311, "target": 163, line: "district"},
+            {"source": 311, "target": 163, line: "hammersmith-and-city"},
+            {"source": 311, "target": 295, line: "hammersmith-and-city"},
+            {"source": 311, "target": 295, line: "district"},
+            {"source": 305, "target": 295, line: "district"},
+            {"source": 305, "target": 295, line: "hammersmith-and-city"},
+            {"source": 305, "target": 261, line: "hammersmith-and-city"},
+            {"source": 305, "target": 261, line: "district"},
+            {"source": 24, "target": 261, line: "district"},
+            {"source": 24, "target": 261, line: "hammersmith-and-city"},
         ]
     };
 
@@ -727,7 +765,7 @@
     force.theta(0.2);
     force.linkStrength(function (link) {
         if (link.shortcut)  return 0;
-        if(link.line === "joined") return 2;
+        if(link.line === "joined") return 10;
         return 0.8;
     });
 
