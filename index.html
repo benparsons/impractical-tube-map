@@ -180,7 +180,7 @@
             {station: 80, name: "Seven Sisters"},
             {station: 81, name: "Shadwell"},
             {station: 82, name: "Shepherd's Bush"},
-            {station: 83, name: "Shoreditch"},
+            {station: 83, name: "Shoreditch High Street"},
             {station: 84, name: "Silvertown"},
             {station: 85, name: "Sloane Square"},
             {station: 86, name: "Snaresbrook"},
@@ -276,7 +276,7 @@
             {station: 176, name: "Canonbury"},
             {station: 177, name: "Canons Park"},
             {station: 178, name: "Chalfont & Latimer"},
-            {station: 179, name: "Stratford", fixed: true, x: (width/2) + (gridSize*10), y: (height/2) - (gridSize*2)},
+            {station: 179, name: "Stratford", fixed: true, x: (width/2) + (gridSize*14), y: (height/2) - (gridSize*2)},
             {station: 180, name: "Sudbury Hill"},
             {station: 181, name: "Sudbury Town"},
             {station: 182, name: "Surrey Quays"},
@@ -418,8 +418,8 @@
             {station: 318, name: "Woodford"},
             {station: 319, name: "Woodside Park"},
             {station: 320, name: "Finchley Central", fixed: true, x: (width/2) + (gridSize*2), y: (height/2) - (gridSize*9)},
-            {station: 321, name: ""},
-            {station: 322, name: ""},
+            {station: 321, name: "Hoxton"},
+            {station: 322, name: "Haggerston"},
             {station: 323, name: ""},
             {station: 324, name: ""},
             {station: 325, name: ""},
@@ -663,6 +663,39 @@
             {"source": 17, "target": 213, line: "northern"},
             {"source": 237, "target": 213, line: "northern"},
             {"source": 237, "target": 320, line: "northern"},
+            {"source": 157, "target": 229, line: "northern"},
+            {"source": 228, "target": 229, line: "northern"},
+            {"source": 228, "target": 230, line: "northern"},
+            {"source": 21, "target": 230, line: "northern"},
+            {"source": 21, "target": 186, line: "northern"},
+            {"source": 187, "target": 186, line: "northern"},
+            {"source": 187, "target": 249, line: "northern"},
+            {"source": 94, "target": 249, line: "northern"},
+            {"source": 94, "target": 226, line: "northern"},
+            {"source": 68, "target": 193, line: "district"},
+            {"source": 102, "target": 47, line: "district"},
+            {"source": 204, "target": 47, line: "district"},
+            {"source": 245, "target": 193, line: "district"},
+            {"source": 245, "target": 10, line: "district"},
+            {"source": 68, "target": 279, line: "district"},
+            {"source": 51, "target": 279, line: "district"},
+            {"source": 68, "target": 279, line: "overground"},
+            {"source": 51, "target": 279, line: "overground"},
+            {"source": 68, "target": 87, line: "overground"},
+            {"source": 9, "target": 118, line: "overground", shortcut: false},
+            {"source": 118, "target": 149, line: "overground"},
+            {"source": 165, "target": 149, line: "overground"},
+            {"source": 165, "target": 164, line: "overground"},
+            {"source": 312, "target": 164, line: "overground"},
+            {"source": 298, "target": 172, line: "overground"},
+            {"source": 298, "target": 74, line: "overground"},
+            {"source": 81, "target": 74, line: "overground"},
+            {"source": 81, "target": 116, line: "overground"},
+            {"source": 83, "target": 116, line: "overground"},
+            {"source": 83, "target": 321, line: "overground"},
+            {"source": 322, "target": 321, line: "overground"},
+            {"source": 322, "target": 232, line: "overground"},
+            {"source": 231, "target": 232, line: "joined"},
         ]
     };
 
@@ -694,7 +727,7 @@
     force.theta(0.2);
     force.linkStrength(function (link) {
         if (link.shortcut)  return 0;
-        if(link.line === "joined") return 1;
+        if(link.line === "joined") return 2;
         return 0.8;
     });
 
