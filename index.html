@@ -812,6 +812,17 @@
             {"source": 306, "target": 214, line: "piccadilly"},
             {"source": 306, "target": 214, line: "metropolitan"},
             {"source": 111, "target": 153, line: "joined"},
+            {"source": 318, "target": 53, line: "central"},
+            {"source": 244, "target": 53, line: "central"},
+            {"source": 244, "target": 63, line: "central"},
+            {"source": 203, "target": 63, line: "central"},
+            {"source": 203, "target": 196, line: "central"},
+            {"source": 25, "target": 196, line: "central"},
+            {"source": 25, "target": 284, line: "central"},
+            {"source": 57, "target": 284, line: "central"},
+            {"source": 57, "target": 49, line: "central"},
+            {"source": 73, "target": 49, line: "central"},
+            {"source": 73, "target": 129, line: "central"},
         ]
     };
 
@@ -838,9 +849,10 @@
     // nodes that are connected. (It is, thus, the length we'd
     // like our links to have.)
 
-    //force.linkDistance(width / 30);
+    force.linkDistance(width / 40);
     force.charge(-400);
     force.theta(0.2);
+    force.gravity(0.08);
     force.linkStrength(function (link) {
         if (link.shortcut)  return 0;
         if(link.line === "joined") return 10;
