@@ -270,7 +270,7 @@
             {station: 167, name: "Burnt Oak"},
             {station: 168, name: "Caledonian Road", fixed: true, x: (width/2) + (gridSize*4), y: (height/2) - (gridSize*4)},
             {station: 169, name: "Caledonian Road & Barnsbury"},
-            {station: 160, name: "Camden Road"},
+            {station: 170, name: "Camden Road"},
             {station: 171, name: "Camden Town", fixed: true, x: (width/2) + (gridSize*1), y: (height/2) - (gridSize*5)},
             {station: 172, name: "Canada Water"},
             {station: 173, name: "Canary Wharf"},
@@ -388,7 +388,7 @@
             {station: 285, name: "North Greenwich"},
             {station: 286, name: "North Harrow"},
             {station: 287, name: "North Wembley"},
-            {station: 288, name: "North Woolwich"},
+            {station: 288, name: "Upper Holloway"},
             {station: 289, name: "Northfields"},
             {station: 290, name: "Northolt"},
             {station: 291, name: "Northwick Park"},
@@ -856,6 +856,22 @@
             {"source": 30, "target": 256, line: "district"},
             {"source": 30, "target": 304, line: "district"},
             {"source": 24, "target": 304, line: "district"},
+            {"source": 316, "target": 315, line: "district"},
+            {"source": 316, "target": 96, line: "district"},
+            {"source": 263, "target": 96, line: "district"},
+            {"source": 263, "target": 43, line: "district"},
+            {"source": 125, "target": 43, line: "district"},
+            {"source": 125, "target": 55, line: "district"},
+            {"source": 309, "target": 55, line: "district"},
+            {"source": 309, "target": 235, line: "district"},
+            {"source": 288, "target": 62, line: "overground"},
+            {"source": 205, "target": 62, line: "overground"},
+            {"source": 205, "target": 200, line: "overground"},
+            {"source": 312, "target": 200, line: "overground"},
+            {"source": 169, "target": 212, line: "overground"},
+            {"source": 169, "target": 170, line: "overground"},
+            {"source": 152, "target": 170, line: "overground"},
+            {"source": 152, "target": 62, line: "overground"},
 
         ]
     };
@@ -886,7 +902,7 @@
     force.linkDistance(width / 40);
     force.charge(-400);
     force.theta(0.2);
-    force.gravity(0.08);
+    force.gravity(0.07);
     force.linkStrength(function (link) {
         if (link.shortcut)  return 0;
         if(link.line === "joined") return 10;
