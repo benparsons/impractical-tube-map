@@ -229,7 +229,7 @@
             {station: 126, name: "Perivale"},
             {station: 127, name: "Pimlico"},
             {station: 128, name: "Leyton"},
-            {station: 129, name: "Leytonstone"},
+            {station: 129, name: "Leytonstone", fixed: true, x: (width/2) + (gridSize*14), y: (height/2) - (gridSize*4)},
             {station: 130, name: "Limehouse"},
             {station: 131, name: "Liverpool Street", fixed: true, x: (width/2) + (gridSize*6), y: (height/2) - (gridSize*2)},
             {station: 132, name: "London Bridge"},
@@ -418,9 +418,9 @@
             {station: 315, name: "Wimbledon"},
             {station: 316, name: "Wimbledon Park"},
             {station: 317, name: "Wood Green"},
-            {station: 318, name: "Woodford"},
+            {station: 318, name: "Woodford", fixed: true, x: (width/2) + (gridSize*14), y: (height/2) - (gridSize*6)},
             {station: 319, name: "Woodside Park"},
-            {station: 320, name: "Finchley Central", fixed: true, x: (width/2) + (gridSize*2), y: (height/2) - (gridSize*9)},
+            {station: 320, name: "Finchley Central", fixed: true, x: (width/2) + (gridSize*4), y: (height/2) - (gridSize*12)},
             {station: 321, name: "Hoxton"},
             {station: 322, name: "Haggerston"},
             {station: 323, name: "Langdon Park"},
@@ -835,6 +835,7 @@
             {"source": 52, "target": 246, line: "metropolitan"},
             {"source": 178, "target": 246, line: "metropolitan"},
             {"source": 178, "target": 15, line: "metropolitan"},
+            {"source": 178, "target": 243, line: "metropolitan"},
             {"source": 106, "target": 227, line: "northern"},
             {"source": 171, "target": 227, line: "northern"},
             {"source": 204, "target": 60, line: "hammersmith-and-city"},
@@ -902,7 +903,7 @@
     force.linkDistance(width / 40);
     force.charge(-400);
     force.theta(0.2);
-    force.gravity(0.07);
+    force.gravity(0.06);
     force.linkStrength(function (link) {
         if (link.shortcut)  return 0;
         if(link.line === "joined") return 10;
